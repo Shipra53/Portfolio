@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipra Upadhyay - Aspiring Software Developer</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter for general text, Poppins for headings (as per request for sleek sans-serif) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons (for skills and social links) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom styles for the specified fonts and smooth scrolling */
+        body {
+            font-family: 'Inter', sans-serif; /* Default body font */
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif; /* Headings font */
+        }
+        /* Hide scrollbar for a cleaner look, but allow scrolling */
+        body::-webkit-scrollbar {
+            display: none; /* For Chrome, Safari, and Opera */
+        }
+        body {
+            -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+            scrollbar-width: none;  /* For Firefox */
+        }
+
+        /* Modal specific styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 100; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #ffffff; /* Changed to white for light theme consistency */
+            margin: auto;
+            padding: 20px;
+            border-radius: 1rem; /* rounded-xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            width: 90%;
+            max-width: 1000px;
+            position: relative;
+            animation-name: animatetop;
+            animation-duration: 0.4s;
+            max-height: 90vh; /* Limit height to enable scrolling within modal */
+            overflow-y: auto; /* Enable vertical scrolling */
+            color: #1f2937; /* Default text color for light modal content (gray-800) */
+        }
+
+        /* Add Animation */
+        @keyframes animatetop {
+            from {top: -300px; opacity: 0}
+            to {top: 0; opacity: 1}
+        }
+
+        .close-button {
+            color: #4a5568; /* Darker close button for light background */
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #1a202c; /* Even darker on hover */
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .certificate-card img {
+            max-width: 100%; /* Ensure images don't overflow */
+            height: auto;
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-sky-200 text-gray-800 min-h-screen flex flex-col">
+
+    <!-- Header and Navigation -->
+    <header class="bg-blue-600 bg-opacity-70 backdrop-blur-sm shadow-lg py-4 px-6 fixed w-full z-10 top-0">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold text-white hover:text-blue-200 transition duration-300 ease-in-out">Shipra Upadhyay</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">Home</a>
+                <a href="#about" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">About</a>
+                <a href="#education" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">Education</a>
+                <a href="#projects" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">Projects</a>
+                <a href="#skills" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">Skills</a>
+                <a href="#certificates" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">Documents</a> <!-- Updated navigation link for combined section -->
+                <a href="#contact" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">Contact</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-blue-900 bg-opacity-95 z-20 flex flex-col items-center justify-center space-y-8 text-2xl">
+            <button id="close-mobile-menu" class="absolute top-6 right-6 text-white hover:text-blue-200 focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <a href="#home" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">Home</a>
+            <a href="#about" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">About</a>
+            <a href="#education" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">Education</a>
+            <a href="#projects" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">Projects</a>
+            <a href="#skills" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">Skills</a>
+            <a href="#certificates" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">Documents</a>
+            <a href="#contact" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">Contact</a>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow container mx-auto px-4 py-8 pt-24">
+
+        <!-- Home Section -->
+        <section id="home" class="flex flex-col md:flex-row items-center justify-center min-h-[calc(100vh-6rem)] text-center md:text-left gap-8 mb-12">
+            <div class="md:w-1/2 flex justify-center md:justify-end">
+                 <img src="https://as2.ftcdn.net/v2/jpg/04/78/26/09/1000_F_478260927_eH9MtAsxFL8QODicsvgrvShECyd0qufv.jpg" alt="Shipra Upadhyay Profile Picture" class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover border-4 border-teal-500 shadow-lg animate-fade-in-up">
+
+            </div>
+            <div class="md:w-1/2 mt-8 md:mt-0 md:pl-10">
+                <h1 class="text-6xl font-extrabold leading-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-blue-700 animate-slide-in-left">
+                    Shipra Upadhyay
+                </h1>
+                <p class="text-3xl font-medium text-gray-700 mb-6 animate-fade-in">
+                 Android Developer || Skilled in Java || Building Simple and User-Friendly Apps
+                </p>
+                <p class="text-xl text-gray-600 mb-8 animate-fade-in-slow">
+                    Passionate about building intuitive and high-performance digital experiences.
+                </p>
+                <a href="#projects" class="inline-block bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 animate-bounce-in">
+                    View My Work
+                </a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-12 mb-12">
+            <h2 class="text-5xl font-extrabold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-700">
+                About Me
+            </h2>
+            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-2xl p-8 md:p-12">
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    I’m a dedicated and driven student currently pursuing my Master’s in Computer Applications at KIET Group of Institutions (Graduating in 2026). I have a passion for creating functional and user-friendly digital solutions.
+                </p>
+                <p class="text-lg text-gray-700 leading-relaxed">
+                    With strong technical skills in web and mobile development, I enjoy transforming complex ideas into tangible applications. I'm actively exploring opportunities to apply my knowledge professionally and contribute to innovative projects.
+                </p>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-12 mb-12">
+            <h2 class="text-5xl font-extrabold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-700">
+                Education
+            </h2>
+            <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-2xl p-8 md:p-12">
+                <ul class="space-y-6">
+                    <li class="flex items-start">
+                        <i class="fas fa-graduation-cap text-blue-600 text-2xl mr-4 mt-1"></i>
+                        <div>
+                            <h3 class="text-2xl font-semibold text-blue-700">Master of Computer Applications (MCA)</h3>
+                            <p class="text-xl text-gray-700">KIET Group of Institutions, Ghaziabad</p>
+                            <p class="text-lg text-gray-600">Expected Graduation: 2026</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-graduation-cap text-blue-600 text-2xl mr-4 mt-1"></i>
+                        <div>
+                            <h3 class="text-2xl font-semibold text-blue-700">Bachelor of Computer Applications (BCA)</h3>
+                            <p class="text-xl text-gray-700">University of Allahabad</p>
+                            <p class="text-lg text-gray-600">Graduated: 2024 (GPA: 8.21)</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-school text-blue-600 text-2xl mr-4 mt-1"></i>
+                        <div>
+                            <h3 class="text-2xl font-semibold text-blue-700">Senior Secondary Education</h3>
+                            <p class="text-xl text-gray-700">New R.S.J. Public School</p>
+                            <p class="text-lg text-gray-600">Year: 2021 (Percentage: 83.8%)</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-school text-blue-600 text-2xl mr-4 mt-1"></i>
+                        <div>
+                            <h3 class="text-2xl font-semibold text-blue-700">Secondary Education</h3>
+                            <p class="text-xl text-gray-700">J.D. Public School</p>
+                            <p class="text-lg text-gray-600">Year: 2019 (Percentage: 80.6%)</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Portfolio / Projects Section -->
+        <section id="projects" class="py-12 mb-12">
+            <h2 class="text-5xl font-extrabold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-red-700">
+                My Projects
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Project Card 1: PYQ Android App -->
+                <div class="bg-white rounded-xl shadow-2xl overflow-hidden transform transition duration-500 hover:scale-105 hover:shadow-blue-500/50 group">
+                    <img src="https://placehold.co/600x350/312e81/ffffff?text=PYQ+Android+App" alt="PYQ Android App Project" class="w-full h-56 object-cover rounded-t-xl group-hover:brightness-90 transition duration-300">
+                    <div class="p-6">
+                        <h3 class="text-3xl font-bold text-blue-600 mb-3 group-hover:text-blue-700 transition duration-300">PYQ Android App</h3>
+                        <p class="text-gray-700 text-lg mb-4 leading-relaxed">
+                            An intuitive Android application designed to provide easy access to previous year exam papers, helping students prepare efficiently.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-sm mb-4">
+                            <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full"><i class="fab fa-java mr-1"></i>Java</span>
+                            <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full"><i class="fas fa-database mr-1"></i>SQLite</span>
+                            <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full"><i class="fab fa-android mr-1"></i>Android Studio</span>
+                        </div>
+                    
+                    </div>
+                </div>
+
+                <!-- Project Card 2: Plate2Donate -->
+                <div class="bg-white rounded-xl shadow-2xl overflow-hidden transform transition duration-500 hover:scale-105 hover:shadow-green-500/50 group">
+                    <img src="https://placehold.co/600x350/059669/ffffff?text=Plate2Donate+App" alt="Plate2Donate Project" class="w-full h-56 object-cover rounded-t-xl group-hover:brightness-90 transition duration-300">
+                    <div class="p-6">
+                        <h3 class="text-3xl font-bold text-green-600 mb-3 group-hover:text-green-700 transition duration-300">Plate2Donate</h3>
+                        <p class="text-gray-700 text-lg mb-4 leading-relaxed">
+                            The Plate2Donate project aims to be a centralized platform to organize and manage food donation events.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-sm mb-4">
+                            <span class="bg-green-200 text-green-800 px-3 py-1 rounded-full"><i class="fab fa-react mr-1"></i>React</span>
+                            <span class="bg-green-200 text-green-800 px-3 py-1 rounded-full"><i class="fab fa-node-js mr-1"></i>Node.js</span>
+                            <span class="bg-green-200 text-green-800 px-3 py-1 rounded-full">Express.js</span>
+                            <span class="bg-green-200 text-green-800 px-3 py-1 rounded-full"><i class="fas fa-database mr-1"></i>MongoDB</span>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-12 mb-12">
+            <h2 class="text-5xl font-extrabold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-orange-700">
+                My Skills
+            </h2>
+            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-2xl p-8 md:p-12">
+                <div class="mb-8">
+                    <h3 class="text-3xl font-semibold text-orange-700 mb-4 flex items-center"><i class="fas fa-code mr-3"></i>Programming Languages</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-orange-200 text-orange-800 px-4 py-2 rounded-full text-lg flex items-center"><i class="fas fa-c mr-2"></i></span>
+                        <span class="bg-orange-200 text-orange-800 px-4 py-2 rounded-full text-lg flex items-center"><i class="fas fa-database mr-2"></i>SQL</span>
+                        <span class="bg-orange-200 text-orange-800 px-4 py-2 rounded-full text-lg flex items-center"><i class="fab fa-java mr-2"></i>Java</span>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-3xl font-semibold text-teal-700 mb-4 flex items-center"><i class="fas fa-globe mr-3"></i>Web Technologies</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-teal-200 text-teal-800 px-4 py-2 rounded-full text-lg flex items-center"><i class="fab fa-html5 mr-2"></i>HTML</span>
+                        <span class="bg-teal-200 text-teal-800 px-4 py-2 rounded-full text-lg flex items-center"><i class="fab fa-css3-alt mr-2"></i>CSS</span>
+                        <span class="bg-teal-200 text-teal-800 px-4 py-2 rounded-full text-lg flex items-center"><i class="fab fa-js-square mr-2"></i>JavaScript</span>
+                        <span class="bg-teal-200 text-teal-800 px-4 py-2 rounded-full text-lg flex items-center"><i class="fab fa-react mr-2"></i>React</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-3xl font-semibold text-blue-700 mb-4 flex items-center"><i class="fas fa-tools mr-3"></i>Tools</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-blue-200 text-blue-800 px-4 py-2 rounded-full text-lg flex items-center"><i class="fab fa-figma mr-2"></i>Figma</span>
+                        <span class="bg-blue-200 text-blue-800 px-4 py-2 rounded-full text-lg flex items-center"><i class="fas fa-laptop-code mr-2"></i>VS Code</span>
+                        <span class="bg-blue-200 text-blue-800 px-4 py-2 rounded-full text-lg flex items-center"><i class="fab fa-android mr-2"></i>Android Studio</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Combined Certificates and Resume Section -->
+        <section id="certificates" class="py-12 mb-12">
+            <h2 class="text-5xl font-extrabold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-purple-700">
+                My Documents
+            </h2>
+            <div class="flex flex-col md:flex-row gap-8 max-w-5xl mx-auto justify-center">
+                <!-- Certificates Sub-section -->
+                <div class="w-full md:w-1/2 bg-white rounded-xl shadow-2xl p-8 md:p-12 text-center">
+                    <h3 class="text-4xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-600">
+                        Certificates
+                    </h3>
+                    <button id="viewCertificatesBtn" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 text-xl">
+                        View All Certificates
+                    </button>
+                </div>
+
+                <!-- Resume Sub-section -->
+                <div class="w-full md:w-1/2 bg-white rounded-xl shadow-2xl p-8 md:p-12 text-center">
+                    <h3 class="text-4xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-600">
+                        Resume
+                    </h3>
+                    <!-- Changed to an <a> tag for direct PDF viewing, styled like a button -->
+                    <a href="certificate/Shipra Resume final1.pdf" target="_blank" rel="noopener noreferrer" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 text-xl">
+                        View My Resume
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-12 mb-12">
+            <h2 class="text-5xl font-extrabold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-teal-700">
+                Get in Touch
+            </h2>
+            <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-2xl p-8 md:p-12">
+                <div class="flex flex-col md:flex-row justify-around items-center mb-10 space-y-6 md:space-y-0">
+                    <a href="mailto:shipra.2426mca528@kiet.edu" class="flex items-center text-gray-700 hover:text-blue-600 transition duration-300 text-lg md:text-xl">
+                        <i class="fas fa-envelope mr-3 text-blue-600"></i> shipra.2426mca528@kiet.edu
+                    </a>
+                    <a href="https://linkedin.com/in/shipra-upadhyay-6136a632b" target="_blank" rel="noopener noreferrer" class="flex items-center text-gray-700 hover:text-blue-600 transition duration-300 text-lg md:text-xl">
+                        <i class="fab fa-linkedin mr-3 text-blue-600"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/Shipra53" target="_blank" rel="noopener noreferrer" class="flex items-center text-gray-700 hover:text-blue-600 transition duration-300 text-lg md:text-xl">
+                        <i class="fab fa-github mr-3 text-blue-600"></i> GitHub
+                    </a>
+                </div>
+
+                <form class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-gray-700 text-xl font-medium mb-2">Name</label>
+                        <input type="text" id="name" name="name" class="w-full p-4 rounded-lg bg-gray-100 border border-gray-300 focus:border-blue-500 focus:ring-blue-500 outline-none text-gray-800 placeholder-gray-500 text-lg transition duration-300" placeholder="Your Name" required>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-gray-700 text-xl font-medium mb-2">Email</label>
+                        <input type="email" id="email" name="email" class="w-full p-4 rounded-lg bg-gray-100 border border-gray-300 focus:border-blue-500 focus:ring-blue-500 outline-none text-gray-800 placeholder-gray-500 text-lg transition duration-300" placeholder="your.email@example.com" required>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-gray-700 text-xl font-medium mb-2">Message</label>
+                        <textarea id="message" name="message" rows="6" class="w-full p-4 rounded-lg bg-gray-100 border border-gray-300 focus:border-blue-500 focus:ring-blue-500 outline-none text-gray-800 placeholder-gray-500 text-lg transition duration-300" placeholder="Your message..." required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 text-xl">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-600 bg-opacity-70 backdrop-blur-sm text-white py-6 mt-auto shadow-inner">
+        <div class="container mx-auto text-center text-lg">
+            <p>&copy; 2025 Shipra Upadhyay. All rights reserved.</p>
+            <div class="flex justify-center space-x-6 mt-4">
+                <a href="https://linkedin.com/in/shipra-upadhyay-6136a632b" target="_blank" rel="noopener noreferrer" class="hover:text-blue-200 transition duration-300"><i class="fab fa-linkedin text-xl"></i></a>
+                <a href="https://github.com/Shipra53" target="_blank" rel="noopener noreferrer" class="hover:text-blue-200 transition duration-300"><i class="fab fa-github text-xl"></i></a>
+                <!-- You can add Behance or other social links here -->
+            </div>
+        </div>
+    </footer>
+
+    <!-- Certificates Modal -->
+    <div id="certificatesModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeCertificatesModal">&times;</span>
+            <h2 class="text-4xl font-extrabold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-purple-700">
+                My Certificates
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Certificate Card 1: AWS Academy -->
+                <div class="bg-gray-700 rounded-lg p-6 shadow-md certificate-card">
+                    <h3 class="text-xl font-semibold text-teal-300 mb-2">AWS Academy Graduate - AWS Academy Cloud Foundations</h3>
+                    <p class="text-gray-300 text-base mb-2">Issued by: AWS Academy</p>
+                    <p class="text-gray-400 text-sm mb-4">Issued on: 04/12/2025</p>
+                    <a href="certificate/AWS_Academy_Graduate___AWS_Academy_Cloud_Foundations_Badge20250412-25-r5w187.pdf" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 font-semibold flex items-center transition duration-300">
+                        View Certificate <i class="fas fa-file-pdf ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Certificate Card 2: Android App Development -->
+                <div class="bg-gray-700 rounded-lg p-6 shadow-md certificate-card">
+                    <h3 class="text-xl font-semibold text-teal-300 mb-2">Android App Development</h3>
+                    <p class="text-gray-300 text-base mb-2">Issued by: C.M.P. Degree College, University of Allahabad</p>
+                    <p class="text-gray-400 text-sm mb-4">Issued during: 2022-2023</p>
+                    <a href="certificate/certificate android.jpg" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 font-semibold flex items-center transition duration-300">
+                        View Certificate <i class="fas fa-image ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Certificate Card 3: Introduction to Cybersecurity -->
+                <div class="bg-gray-700 rounded-lg p-6 shadow-md certificate-card">
+                    <h3 class="text-xl font-semibold text-teal-300 mb-2">Introduction to Cybersecurity</h3>
+                    <p class="text-gray-300 text-base mb-2">Issued by: Cisco Networking Academy</p>
+                    <p class="text-gray-400 text-sm mb-4">Completion Date: 01 May 2025</p>
+                    <a href="certificate/Cyber security cisco.pdf" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 font-semibold flex items-center transition duration-300">
+                        View Certificate <i class="fas fa-file-pdf ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Certificate Card 4: HTML - Beginners -->
+                <div class="bg-gray-700 rounded-lg p-6 shadow-md certificate-card">
+                    <h3 class="text-xl font-semibold text-teal-300 mb-2">HTML - Beginners</h3>
+                    <p class="text-gray-300 text-base mb-2">Issued by: Infosys | Springboard</p>
+                    <p class="text-gray-400 text-sm mb-4">Issued on: June 8, 2025</p>
+
+                    <a href="certificate/HTML - Beginners infosys.pdf" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 font-semibold flex items-center transition duration-300">
+                        View Certificate <i class="fas fa-file-pdf ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Certificate Card 5: Query Quest in HACK-A-THON 2K25 -->
+                <div class="bg-gray-700 rounded-lg p-6 shadow-md certificate-card">
+                    <h3 class="text-xl font-semibold text-teal-300 mb-2">Certificate of Merit (Query Quest)</h3>
+                    <p class="text-gray-300 text-base mb-2">Issued by: IMS Ghaziabad & KIET</p>
+                    <p class="text-gray-400 text-sm mb-4">Held on: April 7, 2025</p>
+                    <a href="/certificate/Ims query quest.pdf" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 font-semibold flex items-center transition duration-300">
+                        View Certificate <i class="fas fa-file-pdf ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Certificate Card 6: Java Features -->
+                <div class="bg-gray-700 rounded-lg p-6 shadow-md certificate-card">
+                    <h3 class="text-xl font-semibold text-teal-300 mb-2">Java Features</h3>
+                    <p class="text-gray-300 text-base mb-2">Issued by: Infosys | Springboard</p>
+                    <p class="text-gray-400 text-sm mb-4">Issued on: June 8, 2025</p>
+                    <a href="certificate/java features infosys.pdf" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 font-semibold flex items-center transition duration-300">
+                        View Certificate <i class="fas fa-file-pdf ml-2"></i>
+                    </a>
+                </div>
+                  <div class="bg-gray-700 rounded-lg p-6 shadow-md certificate-card">
+                    <h3 class="text-xl font-semibold text-teal-300 mb-2">Introduction to Artificial Intelligence</h3>
+                    <p class="text-gray-300 text-base mb-2">Issued by: LinkedIn Learning</p>
+                    <p class="text-gray-400 text-sm mb-4">Issued on: March 3, 2025</p>
+                    <a href="certificate/LinkedIn Learning Certificate.pdf" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 font-semibold flex items-center transition duration-300">
+                        View Certificate <i class="fas fa-file-pdf ml-2"></i>
+                    </a>
+                </div>
+                  <div class="bg-gray-700 rounded-lg p-6 shadow-md certificate-card">
+                    <h3 class="text-xl font-semibold text-teal-300 mb-2">Programming using Java</h3>
+                    <p class="text-gray-300 text-base mb-2">Issued by: Infosys | Springboard</p>
+                    <p class="text-gray-400 text-sm mb-4">Issued on: June 10, 2025</p>
+                    <a href="certificate/Programming using Java infosys.pdf" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 font-semibold flex items-center transition duration-300">
+                        View Certificate <i class="fas fa-file-pdf ml-2"></i>
+                    </a>
+                </div>
+                  <div class="bg-gray-700 rounded-lg p-6 shadow-md certificate-card">
+                    <h3 class="text-xl font-semibold text-teal-300 mb-2">Python 1 Essential</h3>
+                    <p class="text-gray-300 text-base mb-2">Issued by: Cisco</p>
+                    <p class="text-gray-400 text-sm mb-4">Issued on: May 1, 2025</p>
+                    <a href="certificate/Python1 Shipra.pdf" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 font-semibold flex items-center transition duration-300">
+                        View Certificate <i class="fas fa-file-pdf ml-2"></i>
+                    </a>
+                </div>
+                <div class="bg-gray-700 rounded-lg p-6 shadow-md certificate-card">
+                    <h3 class="text-xl font-semibold text-teal-300 mb-2">Python 2 Essential</h3>
+                    <p class="text-gray-300 text-base mb-2">Issued by: Cisco</p>
+                    <p class="text-gray-400 text-sm mb-4">Issued on: April 30, 2025</p>
+                    <a href="certificate/Python2 Shipra.pdf" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 font-semibold flex items-center transition duration-300">
+                        View Certificate <i class="fas fa-file-pdf ml-2"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for Mobile Menu
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            mobileMenu.classList.add('flex');
+        });
+
+        closeMobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('flex');
+        });
+
+        // Close mobile menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+
+        // JavaScript for Certificates Modal
+        const viewCertificatesBtn = document.getElementById('viewCertificatesBtn');
+        const certificatesModal = document.getElementById('certificatesModal');
+        const closeCertificatesModal = document.getElementById('closeCertificatesModal');
+
+        viewCertificatesBtn.addEventListener('click', () => {
+            certificatesModal.style.display = 'flex'; // Use flex to center content
+        });
+
+        closeCertificatesModal.addEventListener('click', () => {
+            certificatesModal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside of the modal content
+        window.addEventListener('click', (event) => {
+            if (event.target == certificatesModal) {
+                certificatesModal.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
