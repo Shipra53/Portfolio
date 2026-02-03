@@ -1,916 +1,527 @@
-<!DOCTYPE html>More actions
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipra Upadhyay - Aspiring Software Developer</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter for general text, Poppins for headings (as per request for sleek sans-serif) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons (for skills and social links) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Custom styles for the specified fonts and smooth scrolling */
+        body {
+            font-family: 'Inter', sans-serif; /* Default body font */
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif; /* Headings font */
+        }
+        /* Hide scrollbar for a cleaner look, but allow scrolling */
+        body::-webkit-scrollbar {
+            display: none; /* For Chrome, Safari, and Opera */
+        }
+        body {
+            -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+            scrollbar-width: none;  /* For Firefox */
+        }
 
-        <!--==================== UNICONS ====================-->
-        <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+        /* Modal specific styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 100; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+        }
 
-        <!--==================== SWIPER CSS ====================-->
-        <link rel="stylesheet" href="./packages/css/swiper-bundle.min.css">
+        .modal-content {
+            background-color: #ffffff; /* Changed to white for light theme consistency */
+            margin: auto;
+            padding: 20px;
+            border-radius: 1rem; /* rounded-xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            width: 90%;
+            max-width: 1000px;
+            position: relative;
+            animation-name: animatetop;
+            animation-duration: 0.4s;
+            max-height: 90vh; /* Limit height to enable scrolling within modal */
+            overflow-y: auto; /* Enable vertical scrolling */
+            color: #1f2937; /* Default text color for light modal content (gray-800) */
+        }
 
-        <!--==================== CSS ====================-->
-        <link rel="stylesheet" href="./packages/css/styles.css">
+        /* Add Animation */
+        @keyframes animatetop {
+            from {top: -300px; opacity: 0}
+            to {top: 0; opacity: 1}
+        }
 
-        <title>Prashanna</title>
-    </head>
-    <body>
-        <!--==================== HEADER ====================-->
-        <header class="header" id="header">
-            <nav class="nav container">
-                <a href="#" class="nav__logo">Prashanna Sathiyamoorthy</a>
-                <div class="nav__menu" id="nav-menu">
-                    <ul class="nav__list grid">
-                        <li class="nav__item">
-                            <a href="#home" class="nav__link">
-                                <i class="uil uil-estate nav__icon"></i>Home
-                            </a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#about" class="nav__link">
-                                <i class="uil uil-user nav__icon"></i>About
-                            </a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#skills" class="nav__link">
-                                <i class="uil uil-file-alt nav__icon"></i>Skills
-                            </a>
-                        </li>
-                          <li class="nav__item">
-                            <a href="#services" class="nav__link">
-                                <i class="uil uil-briefcase-alt nav__icon"></i>Services
-                            </a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#portfolio" class="nav__link">
-                                <i class="uil uil-scenery nav__icon"></i>Portfolio                                
-                            </a>
-                        </li>
-                        <li class="nav__item">
-                            <a href="#contact" class="nav__link">
-                                <i class="uil uil-message nav__icon"></i>Contact                               
-                            </a>
-                        </li>
-                    </ul>
-                    <i class="uil uil-times nav__close" id="nav-close"></i>
-                </div>
-                <div class="nav__btns">
-                    <!-- Theme change button -->
+        .close-button {
+            color: #4a5568; /* Darker close button for light background */
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 2rem;
+            font-weight: bold;
+            transition: color 0.3s ease-in-out;
+        }
 
-                    <i class="uil uil-moon change-theme" id="theme-button"></i>
+        .close-button:hover,
+        .close-button:focus {
+            color: #1a202c; /* Even darker on hover */
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .certificate-card img {
+            max-width: 100%; /* Ensure images don't overflow */
+            height: auto;
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-sky-200 text-gray-800 min-h-screen flex flex-col">
 
-                    <div class="nav__toggle" id="nav-toggle">
-                        <i class="uil uil-apps"></i>
-                    </div>
-                </div>
-            </nav>
-        </header>
-
-        <!--==================== MAIN ====================-->
-        <main class="main">
-            <!--==================== HOME ====================-->
-            <section class="home section" id="home">
-                <div class="home__container container grid">
-                    <div class="home__content grid">
-                        <div class="home__social">
-                            <a href="https://www.linkedin.com" target="_blank" class="home__social-icon">
-                            <a href="https://www.linkedin.com/in/prashanna-sathiyamoorthy-194704153/" target="_blank" class="home__social-icon">
-                                <i class="uil uil-linkedin-alt"></i>
-                            </a>
-                            <a href="https://www/twitter.com" target="_blank" class="home__social-icon">
-                            <a href="https://twitter.com/prashanna01" target="_blank" class="home__social-icon">
-                                <i class="uil uil-twitter-alt"></i>
-                            </a>
-                            <a href="https://www.github.com" target="_blank" class="home__social-icon">
-                                <i class="uil uil-github-alt"></i>
-                            </a>
-                        </div>
-
-                        <div class="home__img">
-                            <svg class="home__blob" viewBox="0 0 200 187" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                <mask id="mask0" mask-type="alpha">
-                                    <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 
-                                    130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 
-                                    97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 
-                                    0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"/>
-                                </mask>
-                                <g mask="url(#mask0)">
-                                    <path d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 
-                                    165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 
-                                    129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 
-                                    -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"/>
-                                    <image class="home__blob-img" x="" xlink:href="packages/images/pras-1.jpeg"/>
-                                </g>
-                            </svg>
-                        </div>
-
-                        <div class="home__data">
-                            <h1 class="home__title">Hi, I'am Prashanna</h1>
-                            <h3 class="home__subtitle">Data Analyst</h3>
-                            <p class="home__description">High level experience in data analitical knowledge and digital banking with quality work.</p>
-                            <a href="#contact" class="button button--flex home__button">
-                                Contact Me<i class="uil uil-message button__icon"></i>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="home__scroll">
-                        <a href="#about" class="home__scroll-button button--flex">
-                            <i class="uil uil-mouse-alt home__scroll-mouse"></i>
-                            <span class="home__scroll-name">Scroll Down</span>
-                            <i class="uil uil-arrow-down home__scroll-arrow"></i>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!--==================== ABOUT ====================-->
-            <section class="about section" id="about">
-                <h2 class="section__title">About Me</h2>
-                <span class="section__subtitle">My Introduction</span>
-
-                <div class="about__container container grid">
-                    <img src="packages/images/pras-2.jpeg" alt="" class="about__img">
-                    <div class="about__data">
-                        <p class="about__description">
-                            Data analyst, with extensive knowledge and years of experience, 
-                            working in Digital banking technologies and other data analitical tools, 
-                            delivering quality work.
-                        </p>
-                        <div class="about__info">
-                            <div>
-                                <span class="about__info-title">03+</span>
-                                <span class="about__info-name">Years <br> experience</span>
-                            </div>
-                            <div>
-                                <span class="about__info-title">05+</span>
-                                <span class="about__info-name">Completed <br> certifications</span>
-                            </div>
-                            <div>
-                                <span class="about__info-title">02+</span>
-                                <span class="about__info-name">companies<br>worked</span>
-                            </div>
-                        </div>
-
-                        <div class="about__buttons">
-                            <a download="" href="packages/pdf/" class="button button--flex">
-                                Download CV<i class="uil uil-download-alt button__icon"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!--==================== SKILLS ====================-->
-            <section class="skills section" id="skills">
-                <h2 class="section__title">Skills</h2>
-                <span class="section__subtitle">My technical level</span>
-
-                <div class="skills__container container grid">
-                    <div>
-                         <!--==================== SKILL-1 ====================-->
-                        <div class="skills__content skills__open">
-                            <div class="skills__header">
-                                <i class="uil uil-analytics skills__icon"></i>
-                               <div>
-                                   <h1 class="skills__title">Data Analyst</h1>
-                                   <span class="skills__subtitle">More than 2 years</span>
-                               </div>
-
-                               <i class="uil uil-angle-down skills__arrow"></i>
-                            </div>
-                            <div class="skills__list grid">
-                                <div class="skills__data">
-                                    <div class="skills__titles">
-                                        <h3 class="skills__name">Python</h3>
-                                        <span class="skills__number">60%</span>
-                                    </div>
-                                    <div class="skills__bar">
-                                        <span class="skills__percentage skills__python"></span>
-                                    </div>
-                                </div>
-                               <div class="skills__data">
-                                   <div class="skills__titles">
-                                       <h3 class="skills__name">Tableau</h3>
-                                       <span class="skills__number">70%</span>
-                                   </div>
-                                   <div class="skills__bar">
-                                       <span class="skills__percentage skills__tab"></span>
-                                   </div>
-                               </div>
-                               <div class="skills__data">
-                                   <div class="skills__titles">
-                                       <h3 class="skills__name">SQL</h3>
-                                       <span class="skills__number">50%</span>
-                                   </div>
-                                   <div class="skills__bar">
-                                       <span class="skills__percentage skills__sql"></span>
-                                   </div>
-                               </div>
-                               <div class="skills__data">
-                                   <div class="skills__titles">
-                                       <h3 class="skills__name">Google Suite</h3>
-                                       <span class="skills__number">70%</span>
-                                   </div>
-                                   <div class="skills__bar">
-                                       <span class="skills__percentage skills__google"></span>
-                                   </div>
-                               </div>
-                            </div>
-                        </div>
-                         <!--==================== SKILLS 2 ====================-->
-                        <div class="skills__content skills__close">
-                            <div class="skills__header">
-                                <i class="uil uil-money-bill skills__icon"></i>
-                               <div>
-                                   <h1 class="skills__title">Banker</h1>
-                                   <span class="skills__subtitle">More than 3 years</span>
-                               </div>
-
-                               <i class="uil uil-angle-down skills__arrow"></i>
-                            </div>
-                            <div class="skills__list grid">
-                                <div class="skills__data">
-                                    <div class="skills__titles">
-                                        <h3 class="skills__name">Digital Banking</h3>
-                                        <span class="skills__number">80%</span>
-                                    </div>
-                                    <div class="skills__bar">
-                                        <span class="skills__percentage skills__bank"></span>
-                                    </div>
-                               </div>
-                               <div class="skills__data">
-                                   <div class="skills__titles">
-                                       <h3 class="skills__name">Counters</h3>
-                                       <span class="skills__number">80%</span>
-                                   </div>
-                                   <div class="skills__bar">
-                                       <span class="skills__percentage skills__counter"></span>
-                                   </div>
-                               </div>
-                               <div class="skills__data">
-                                    <div class="skills__titles">
-                                      <h3 class="skills__name">Google suite</h3>
-                                      <span class="skills__number">70%</span>
-                                    </div>
-                                    <div class="skills__bar">
-                                       <span class="skills__percentage skills__google"></span>
-                                    </div>
-                                </div>
-                                <div class="skills__data">
-                                   <div class="skills__titles">
-                                       <h3 class="skills__name">MS Office</h3>
-                                       <span class="skills__number">90%</span>
-                                   </div>
-                                   <div class="skills__bar">
-                                       <span class="skills__percentage skills__office"></span>
-                                   </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div>
-                        <!--==================== SKILLS 3 ====================-->
-                        <div class="skills__content skills__close">
-                            <div class="skills__header">
-                               <i class="uil uil-brackets-curly skills__icon"></i>
-                               <div>
-                                   <h1 class="skills__title">Web Developer</h1>
-                                   <span class="skills__subtitle">More than 3 years</span>
-                               </div>
-
-                               <i class="uil uil-angle-down skills__arrow"></i>
-                            </div>
-                            <div class="skills__list grid">
-                                <div class="skills__data">
-                                    <div class="skills__titles">
-                                        <h3 class="skills__name">HTML</h3>
-                                        <span class="skills__number">90%</span>
-                                    </div>
-                                    <div class="skills__bar">
-                                        <span class="skills__percentage skills__html"></span>
-                                    </div>
-                                </div>
-                               <div class="skills__data">
-                                   <div class="skills__titles">
-                                       <h3 class="skills__name">CSS</h3>
-                                       <span class="skills__number">80%</span>
-                                   </div>
-                                   <div class="skills__bar">
-                                       <span class="skills__percentage skills__css"></span>
-                                   </div>
-                               </div>
-                               <div class="skills__data">
-                                   <div class="skills__titles">
-                                       <h3 class="skills__name">JavaScript</h3>
-                                       <span class="skills__number">60%</span>
-                                   </div>
-                                   <div class="skills__bar">
-                                       <span class="skills__percentage skills__js"></span>
-                                   </div>
-                               </div>
-                               <div class="skills__data">
-                                   <div class="skills__titles">
-                                       <h3 class="skills__name">WordPress</h3>
-                                       <span class="skills__number">70%</span>
-                                   </div>
-                                   <div class="skills__bar">
-                                       <span class="skills__percentage skills__wordpress"></span>
-                                   </div>
-                               </div>
-                           </div>
-                       </div>
-                    </div>
-                </div>
-            </section>
-
-              <!--==================== QUALIFICATION ====================-->
-        <section class="qualification__section">
-            <h2 class="section__title">Qualification</h2>
-            <span class="section__subtitle">My personal journey</span>
-
-            <div class="qualification__container container">
-                <div class="qualification__tabs">
-                    <div class="qualification__button button--flex qualification__active" data-target='#education'>
-                        <i class="uil uil-graduation-cap qualification__icon"></i>
-                        Education
-                    </div>
-
-                    <div class="qualification__button button--flex" data-target="#work">
-                        <i class="uil uil-briefcase-alt qualification__icon"></i>
-                        Work
-                    </div>
-                </div>
-
-                <div class="qualification__sections">
-            <!--==================== QUALIFICATION CONTENT 1 ====================-->
-            <div class="qualification__content qualification__active" data-content id="education">
-             <!--==================== QUALIFICATION 1 ====================--> 
-             <div class="qualification__data">
-                 <div>
-                     <h3 class="qualification__title">Diploma in English </h3>
-                     <span class="qualification__subtitle">British Council, Kandy</span>
-                     <div class="qualification__calendar">
-                        <i class="uil uil-calendar-alt"></i>
-                        2011 - 2012
-                     </div>
-                 </div>
-
-                 <div>
-                     <span class="qualification__rounder"></span>
-                     <span class="qualification__line"></span>
-                 </div>
-             </div>
-
-             <!--==================== QUALIFICATION 2 ====================--> 
-             <div class="qualification__data">
-                <div></div>
-                <div>
-                   <span class="qualification__rounder"></span>
-                   <span class="qualification__line"></span>
-                </div>
-
-                <div>
-                    <h3 class="qualification__title">GCE Adavance Level</h3>
-                    <span class="qualification__subtitle">St.Anthony's College, Kandy</span>
-                    <div class="qualification__calendar">
-                       <i class="uil uil-calendar-alt"></i>
-                       2012 - 2014
-                    </div>
-                </div>
-            </div> 
-
-            <!--==================== QUALIFICATION 3 ====================--> 
-            <div class="qualification__data">
-                <div>
-                    <h3 class="qualification__title">BSc Management Information System</h3>
-                    <span class="qualification__subtitle">NSBM Green University</span>
-                    <div class="qualification__calendar">
-                       <i class="uil uil-calendar-alt"></i>
-                       2015 - 2018
-                    </div>
-                </div>
-
-                <div>
-                    <span class="qualification__rounder"></span>
-                    <span class="qualification__line"></span>
-                </div>
-            </div> 
-
-            <!--==================== QUALIFICATION 4 ====================--> 
-            <div class="qualification__data">
-                <div></div>
-                <div>
-                    <span class="qualification__rounder"></span>
-                   <!-- <span class="qualification__line"></span> -->
-                </div>
-
-                <div>
-                    <h3 class="qualification__title">Data Analyst Professional Certification</h3>
-                    <span class="qualification__subtitle">Google | Coursera - Online</span>
-                    <div class="qualification__calendar">
-                       <i class="uil uil-calendar-alt"></i>
-                       2021
-                    </div>
-                </div>
-
-
+    <!-- Header and Navigation -->
+    <header class="bg-blue-600 bg-opacity-70 backdrop-blur-sm shadow-lg py-4 px-6 fixed w-full z-10 top-0">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="#home" class="text-2xl font-bold text-white hover:text-blue-200 transition duration-300 ease-in-out">Shipra Upadhyay</a>
+            <div class="hidden md:flex space-x-6">
+                <a href="#home" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">Home</a>
+                <a href="#about" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">About</a>
+                <a href="#education" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">Education</a>
+                <a href="#projects" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">Projects</a>
+                <a href="#skills" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">Skills</a>
+                <a href="#certificates" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">Documents</a> <!-- Updated navigation link for combined section -->
+                <a href="#contact" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">Contact</a>
             </div>
-            </div>
-
-            <!--==================== QUALIFICATION CONTENT 2 ====================-->
-            <div class="qualification__content" data-content id="work">
-                <!--==================== QUALIFICATION 1 ====================--> 
-                <div class="qualification__data">
-                    <div>
-                        <h3 class="qualification__title">Trainee Banking Assistant</h3>
-                        <span class="qualification__subtitle">DFCC Head Office - Colombo</span>
-                        <div class="qualification__calendar">
-                           <i class="uil uil-calendar-alt"></i>
-                           2017 - 2019
-                        </div>
-                    </div>
-
-                    <div>
-                        <span class="qualification__rounder"></span>
-                        <span class="qualification__line"></span>
-                    </div>
-                </div>
-
-                <!--==================== QUALIFICATION 2 ====================--> 
-                <div class="qualification__data">
-                   <div></div>
-                   <div>
-                      <span class="qualification__rounder"></span>
-                      <span class="qualification__line"></span>
-                   </div>
-
-                   <div>
-                       <h3 class="qualification__title">Banking Assistant</h3>
-                       <span class="qualification__subtitle">DFCC Head Office - Colombo</span>
-                       <div class="qualification__calendar">
-                          <i class="uil uil-calendar-alt"></i>
-                          2019 - 2020
-                       </div>
-                   </div>
-               </div> 
-
-               <!--==================== QUALIFICATION 3 ====================--> 
-               <div class="qualification__data">
-                   <div>
-                       <h3 class="qualification__title">Data Analyst - Digital banking</h3>
-                       <span class="qualification__subtitle">DFCC Head Office - Colombo</span>
-                       <div class="qualification__calendar">
-                          <i class="uil uil-calendar-alt"></i>
-                          2020 - Present
-                       </div>
-                   </div>
-
-                   <div>
-                       <span class="qualification__rounder"></span>
-                       <!-- <span class="qualification__line"></span> -->
-                   </div>
-               </div> 
-
-               </div> 
-
-               </div>
-            </div>
-        </section>
-
-        <!--==================== SERVICES ====================-->
-        <section class="services section" id="services">
-            <h2 class="section__title">Services</h2>
-            <span class="section__subtitle">What I offer</span>
-
-            <div class="services__container container grid">
-        <!--==================== SERVICES 1 ====================-->  
-        <div class="services__content">
-            <div>
-                <i class="uil uil-analytics skills__icon"></i>
-                <h3 class="services__title">Data Analyst<br></h3>
-            </div>
-            <span class="button button--flex button--small button--link services__button">
-                View more
-                <i class="uil uil-arrow-right button__icon"></i>
-            </span>
-
-            <div class="services__modal">
-                <div class="services__modal-content">
-                    <h4 class="services__modal-title">Data Analyst <br></h4>
-                    <i class="uil uil-times services__modal-close"></i>
-
-                    <ul class="services__modal-services grid">
-                        <li class="services__modal-service">
-                            <i class="uil uil-check-circle services__modal-icon"></i>
-                            <p>I analize data systems.</p>
-                        </li>
-
-                        <li class="services__modal-service">
-                            <i class="uil uil-check-circle services__modal-icon"></i>
-                            <p>Automating information retrieval.</p>
-                        </li>
-
-                        <li class="services__modal-service">
-                            <i class="uil uil-check-circle services__modal-icon"></i>
-                            <p>Systematically applying statistical and logical techniques.</p>
-                        </li>
-
-                        <li class="services__modal-service">
-                            <i class="uil uil-check-circle services__modal-icon"></i>
-                            <p>Visualizing graphs, charts and preparing reports and dashboards.</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>  
-
-        <!--==================== SERVICES 2 ====================--> 
-        <div class="services__content">
-            <div>
-                <i class="uil uil-money-bill skills__icon"></i>
-                <h3 class="services__title">Banker<br> </h3>
-            </div>
-            <span class="button button--flex button--small button--link services__button">
-                View more
-                <i class="uil uil-arrow-right button__icon"></i>
-            </span>
-
-            <div class="services__modal">
-                <div class="services__modal-content">
-                    <h4 class="services__modal-title">Banker<br></h4>
-                    <i class="uil uil-times services__modal-close"></i>
-
-                    <ul class="services__modal-services grid">
-                        <li class="services__modal-service">
-                            <i class="uil uil-check-circle services__modal-icon"></i>
-                            <p>Assiting both personal and commercial clients with financial questions and needs.</p>
-                        </li>
-
-                        <li class="services__modal-service">
-                            <i class="uil uil-check-circle services__modal-icon"></i>
-                            <p>Maintain customer acoounts and help resolve disputes.</p>
-                        </li>
-
-                        <li class="services__modal-service">
-                            <i class="uil uil-check-circle services__modal-icon"></i>
-                            <p>Refer customers to loan officers or other financial specialist.</p>
-                        </li>
-
-                        <li class="services__modal-service">
-                            <i class="uil uil-check-circle services__modal-icon"></i>
-                            <p>Systematically applying statistical and logical techniques.</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>  
-
-        <!--==================== SERVICES 3 ====================-->
-        <div class="services__content">
-            <div>
-                <i class="uil uil-arrow services__icon"></i>
-                <h3 class="services__title">Web Developer<br></h3>
-            </div>
-            <span class="button button--flex button--small button--link services__button">
-                View more
-                <i class="uil uil-arrow-right button__icon"></i>
-            </span>
-
-            <div class="services__modal">
-                <div class="services__modal-content">
-                    <h4 class="services__modal-title">Web  Developer<br></h4>
-                    <i class="uil uil-times services__modal-close"></i>
-
-                    <ul class="services__modal-services grid">
-                        <li class="services__modal-service">
-                            <i class="uil uil-check-circle services__modal-icon"></i>
-                            <p>I develop the user interface.</p>
-                        </li>
-
-                        <li class="services__modal-service">
-                            <i class="uil uil-check-circle services__modal-icon"></i>
-                            <p>Webpage development.</p>
-                        </li>
-
-                        <li class="services__modal-service">
-                            <i class="uil uil-check-circle services__modal-icon"></i>
-                            <p>I create Ux element interactions.</p>
-                        </li>
-
-                        <li class="services__modal-service">
-                            <i class="uil uil-check-circle services__modal-icon"></i>
-                            <p>Well trained in WordPress.</p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div> 
-
-
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-blue-900 bg-opacity-95 z-20 flex flex-col items-center justify-center space-y-8 text-2xl">
+            <button id="close-mobile-menu" class="absolute top-6 right-6 text-white hover:text-blue-200 focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <a href="#home" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">Home</a>
+            <a href="#about" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">About</a>
+            <a href="#education" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">Education</a>
+            <a href="#projects" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">Projects</a>
+            <a href="#skills" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">Skills</a>
+            <a href="#certificates" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">Documents</a>
+            <a href="#contact" class="text-white hover:text-blue-200 transition duration-300 ease-in-out font-medium">Contact</a>
         </div>
-        </section>
-        <!--==================== PORTFOLIO ====================-->
-        <section class="portfolio section" id="portfolio">
+    </header>
 
-            <h2 class="section__title">Portfolio</h2>
-            <span class="section__subtitle">Most recent works</span>
+    <!-- Main Content Area -->
+    <main class="flex-grow container mx-auto px-4 py-8 pt-24">
 
-            <div class="portfolio__container container swiper-container">
-                <div class="swiper-wrapper">
-        <!--==================== PORTFOLIO 1 ====================-->
+        <!-- Home Section -->
+        <section id="home" class="flex flex-col md:flex-row items-center justify-center min-h-[calc(100vh-6rem)] text-center md:text-left gap-8 mb-12">
+            <div class="md:w-1/2 flex justify-center md:justify-end">
+                 <img src="https://as2.ftcdn.net/v2/jpg/04/78/26/09/1000_F_478260927_eH9MtAsxFL8QODicsvgrvShECyd0qufv.jpg" alt="Shipra Upadhyay Profile Picture" class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover border-4 border-teal-500 shadow-lg animate-fade-in-up">
 
-            <div class="portfolio__content grid swiper-slide">
-                <img src="./packages/images/portfolio1.jpg" alt="" class="portfolio__img">
-
-                <div class="portfolio_">
-                    <h3 class="portfolio__title">Modern Dashboard</h3>
-                    <p class="portfolio__description">Data analitical dashboard adaptable to all devices, 
-                        with ui components and animated interactions.</p>
-                    <a href="#" class="button button--flex button--small portfolio__button">
-                        Demo
-                        <i class="uil uil-arrow-right button__icon"></i>
-                    </a>
-                </div>
             </div>
-
-            <!--==================== PORTFOLIO 2 ====================-->
-
-            <div class="portfolio__content grid swiper-slide">
-                <img src="./packages/images/portfolio3.PNG" alt="" class="portfolio__img">
-
-                <div class="portfolio_">
-                    <h3 class="portfolio__title">E-Commerce website</h3>
-                    <p class="portfolio__description">Above Amazon clone is adaptable to all devices, with 
-                        ui components and animated interactions.</p>
-                    <a href="#" class="button button--flex button--small portfolio__button">
-                        Demo
-                        <i class="uil uil-arrow-right button__icon"></i>
-                    </a>
-                </div>
+            <div class="md:w-1/2 mt-8 md:mt-0 md:pl-10">
+                <h1 class="text-6xl font-extrabold leading-tight mb-4 bg-clip-text text-transparent bg-gradient-to-r from-teal-600 to-blue-700 animate-slide-in-left">
+                    Shipra Upadhyay
+                </h1>
+                <p class="text-3xl font-medium text-gray-700 mb-6 animate-fade-in">
+                 Android Developer || Skilled in Java || Building Simple and User-Friendly Apps
+                </p>
+                <p class="text-xl text-gray-600 mb-8 animate-fade-in-slow">
+                    Passionate about building intuitive and high-performance digital experiences.
+                </p>
+                <a href="#projects" class="inline-block bg-teal-600 hover:bg-teal-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 animate-bounce-in">
+                    View My Work
+                </a>
             </div>
-
-            <!--==================== PORTFOLIO 3 ====================-->
-
-            <div class="portfolio__content grid swiper-slide">
-                <img src="./packages/images/portfolio2.png" alt="" class="portfolio__img">
-
-                <div class="portfolio_">
-                    <h3 class="portfolio__title">Brand Design</h3>
-                    <p class="portfolio__description">Tesla Clone is adaptable to all devices, with 
-                        ui components and animated interactions.</p>
-                    <a href="#" class="button button--flex button--small portfolio__button">
-                        Demo
-                        <i class="uil uil-arrow-right button__icon"></i>
-                    </a>
-                </div>
-            </div>
-                </div>
-
-            <!-- add arrows-->
-            <div class="swiper-button-next">
-                <i class="uil uil-angle-right-b swiper-portfolio-icon"></i>
-            </div>
-
-            <div class="swiper-button-prev">
-                <i class="uil uil-angle-left-b swiper-portfolio-icon"></i>
-            </div>
-
-            <!-- Add Pagination -->
-            <div class="swiper-pagination"></div>
-
-
-        </div>
-
         </section>
 
-        <!--==================== PROJECT IN MIND ====================-->
-        <section class="project section">
-
-            <div class="project__bg">
-                <div class="project__container container grid">
-                    <div class="project__data">
-                        <h2 class="project__title">You have a new project?</h2>
-                        <p class="project__description">Contact me now and get discounts on your Web development projects.</p>
-                        <a href="#contact" class="button button--flex button--white">Contact me
-                            <i class="uil uil-message project__icon button__icon"></i>
-                        </a>
-
-                    </div>
-                    <!-- <img src="assets/img/project.png" alt="" class="project__img"> -->
-                </div>
+        <!-- About Section -->
+        <section id="about" class="py-12 mb-12">
+            <h2 class="text-5xl font-extrabold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-700">
+                About Me
+            </h2>
+            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-2xl p-8 md:p-12">
+                <p class="text-lg text-gray-700 leading-relaxed mb-6">
+                    I’m a dedicated and driven student currently pursuing my Master’s in Computer Applications at KIET Group of Institutions (Graduating in 2026). I have a passion for creating functional and user-friendly digital solutions.
+                </p>
+                <p class="text-lg text-gray-700 leading-relaxed">
+                    With strong technical skills in web and mobile development, I enjoy transforming complex ideas into tangible applications. I'm actively exploring opportunities to apply my knowledge professionally and contribute to innovative projects.
+                </p>
             </div>
-
         </section>
 
-        <!--==================== TESTIMONIAL ====================-->
-        <section class="testimonial section">
-
-            <h2 class="section__title">Testimonials</h2>
-            <span class="section__subtitle">My client saying</span>
-
-            <div class="testimonial__container container swiper-container">
-                <div class="swiper-wrapper">
-                <!--==================== TESTIMONIAL 1 ====================-->
-                    <div class="testimonial__content swiper-slide">
-                        <div class="testimonial__data">
-                            <div class="testimonial__header">
-                                <img src="./packages/images/arun.PNG" alt="" class="testimonial__img">
-
-                                <div>
-                                    <h3 class="testimonial__name">Arun Prashanth</h3>
-                                    <span class="testimonial__client">Client</span>
-                                </div>
-                            </div>
-                            <div>
-                                <i class="uil uil-star testimonial__icon-star"></i>
-                                <i class="uil uil-star testimonial__icon-star"></i>
-                                <i class="uil uil-star testimonial__icon-star"></i>
-                                <i class="uil uil-star testimonial__icon-star"></i>
-                                <i class="uil uil-star testimonial__icon-star"></i>
-                            </div>
-                        </div>
-
-                        <p class="testimonial__description">I get a good impression, I carry out my project with all the 
-                            possible quality and attention and support 24 hours a day.
-                        </p>
-                    </div>
-                    <!--==================== TESTIMONIAL 2 ====================-->
-                    <div class="testimonial__content swiper-slide">
-                        <div class="testimonial__data">
-                            <div class="testimonial__header">
-                                <img src="./packages/images/yuga.PNG" alt="" class="testimonial__img">
-
-                                <div>
-                                    <h3 class="testimonial__name">Yugadarshan</h3>
-                                    <span class="testimonial__client">Client</span>
-                                </div>
-                            </div>
-                            <div>
-                                <i class="uil uil-star testimonial__icon-star"></i>
-                                <i class="uil uil-star testimonial__icon-star"></i>
-                                <i class="uil uil-star testimonial__icon-star"></i>
-                                <i class="uil uil-star testimonial__icon-star"></i>
-                                <i class="uil uil-star testimonial__icon-star"></i>
-                            </div>
-                        </div>
-
-                        <p class="testimonial__description">I get a good impression, I carry out my project with all the 
-                            possible quality and attention and support 24 hours a day.
-                        </p>
-                    </div>
-                    <!--==================== TESTIMONIAL 3 ====================-->
-                    <div class="testimonial__content swiper-slide">
-                        <div class="testimonial__data">
-                            <div class="testimonial__header">
-                                <img src="./packages/images/shenan.PNG" alt="" class="testimonial__img">
-
-                                <div>
-                                    <h3 class="testimonial__name">Shenan Sachinthan</h3>
-                                    <span class="testimonial__client">Client</span>
-                                </div>
-                            </div>
-                            <div>
-                                <i class="uil uil-star testimonial__icon-star"></i>
-                                <i class="uil uil-star testimonial__icon-star"></i>
-                                <i class="uil uil-star testimonial__icon-star"></i>
-                                <i class="uil uil-star testimonial__icon-star"></i>
-                                <i class="uil uil-star testimonial__icon-star"></i>
-                            </div>
-                        </div>
-
-                        <p class="testimonial__description">I get a good impression, I carry out my project with all the 
-                            possible quality and attention and support 24 hours a day.</p>
-                    </div>      
-                </div>
-
-                <!--Add pagination-->
-                <div class="swiper-pagination swiper-pagination-testimonial"></div>
-            </div>
-            </section>
-
-        <!--==================== CONTACT ME ====================-->
-        <section class="contact section" id="contact">
-            <h2 class="section__title">Contact me</h2>
-            <span class="section__subtitle">Get in touch</span>
-
-            <div class="contact__container container grid">
-                <div>
-                    <div class="contact__information">
-                        <i class="uil uil-phone-alt contact__icon"></i>
-
+        <!-- Education Section -->
+        <section id="education" class="py-12 mb-12">
+            <h2 class="text-5xl font-extrabold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-indigo-700">
+                Education
+            </h2>
+            <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-2xl p-8 md:p-12">
+                <ul class="space-y-6">
+                    <li class="flex items-start">
+                        <i class="fas fa-graduation-cap text-blue-600 text-2xl mr-4 mt-1"></i>
                         <div>
-                            <h3 class="contact__title">Call me</h3>
-                            <span class="contatc__subtitle">(+94) 755422421</span>
+                            <h3 class="text-2xl font-semibold text-blue-700">Master of Computer Applications (MCA)</h3>
+                            <p class="text-xl text-gray-700">KIET Group of Institutions, Ghaziabad</p>
+                            <p class="text-lg text-gray-600">Expected Graduation: 2026</p>
                         </div>
-                    </div>
-
-                    <div class="contact__information">
-                        <i class="uil uil-envelope contact__icon"></i>
-
-                        <div>
-                            <h3 class="contact__title">E-mail</h3>
-                            <span class="contatc__subtitle">Prashanna01@gmail.com</span>
-                        </div>
-                    </div>
-
-                    <div class="contact__information">
-                        <i class="uil uil-map-marker contact__icon"></i>
-
-                        <div>
-                            <h3 class="contact__title">Location</h3>
-                            <span class="contatc__subtitle">Kandy, Sri Lanka</span>
-                        </div>
-                    </div>
-                </div>
-
-                <form action="" class="contact__form grid">
-                    <div class="contact__inputs grid">
-                        <div class="contact__content">
-                            <label for="" class="contact__label">Name</label>
-                            <input type="text" class="contact__input">
-                        </div>
-
-                        <div class="contact__content">
-                            <label for="" class="contact__label">E-mail</label>
-                            <input type="email" class="contact__input">
-                        </div>
-                    </div>
-
-                    <div class="contact__content">
-                        <label for="" class="contact__label">Subject</label>
-                        <input type="text" class="contact__input">
-                    </div>
-
-                    <div class="contact__content">
-                        <label for="" class="contact__label">Description</label>
-                        <textarea name="" id="" cols="0" rows="7" class="contact__input"></textarea>
-                    </div>
-
-                    <div>
-                        <a href="#" class="button button--flex">
-                            Send message
-                            <i class="uil uil-message button__icon"></i>
-                        </a>
-                    </div>
-                </form>
-            </div>
-
-        </section>
-    </main>
-
-    <!--==================== FOOTER ====================-->
-    <footer class="footer">
-
-        <div class="footer__bg">
-            <div class="footer__container container grid">
-                <div>
-                    <h1 class="footer__title">Prashanna Sathiyamoorthy</h1>
-                    <span class="footer__subtitle">Data Analyst</span>
-                </div>
-
-                <ul class="footer__links">
-                    <li>
-                        <a href="#services" class="footer__link">Services</a>
                     </li>
-                    <li>
-                        <a href="#portfolio" class="footer__link">Portfolio</a>
+                    <li class="flex items-start">
+                        <i class="fas fa-graduation-cap text-blue-600 text-2xl mr-4 mt-1"></i>
+                        <div>
+                            <h3 class="text-2xl font-semibold text-blue-700">Bachelor of Computer Applications (BCA)</h3>
+                            <p class="text-xl text-gray-700">University of Allahabad</p>
+                            <p class="text-lg text-gray-600">Graduated: 2024 (GPA: 8.21)</p>
+                        </div>
                     </li>
-                    <li>
-                        <a href="#contact" class="footer__link">Contact</a>
+                    <li class="flex items-start">
+                        <i class="fas fa-school text-blue-600 text-2xl mr-4 mt-1"></i>
+                        <div>
+                            <h3 class="text-2xl font-semibold text-blue-700">Senior Secondary Education</h3>
+                            <p class="text-xl text-gray-700">New R.S.J. Public School</p>
+                            <p class="text-lg text-gray-600">Year: 2021 (Percentage: 83.8%)</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <i class="fas fa-school text-blue-600 text-2xl mr-4 mt-1"></i>
+                        <div>
+                            <h3 class="text-2xl font-semibold text-blue-700">Secondary Education</h3>
+                            <p class="text-xl text-gray-700">J.D. Public School</p>
+                            <p class="text-lg text-gray-600">Year: 2019 (Percentage: 80.6%)</p>
+                        </div>
                     </li>
                 </ul>
+            </div>
+        </section>
 
-                <div class="footer__socials">
-                    <a href="http://facebook.com" target="_blank" class="footer__social">
-                    <a href=https://www.facebook.com/prashanna.drashan" target="_blank" class="footer__social">
-                        <i class="uil uil-facebook"></i>
-                    </a>
-                    <a href="http://instagram.com" target="_blank" class="footer__social">
-                    <a href="https://www.instagram.com/prashanna01/" target="_blank" class="footer__social">
-                        <i class="uil uil-instagram"></i>
-                    </a>
-                    <a href="http://twitter.com/" target="_blank" class="footer__social">
-                    <a href="https://twitter.com/prashanna01" target="_blank" class="footer__social">
-                        <i class="uil uil-twitter-alt"></i>
+        <!-- Portfolio / Projects Section -->
+        <section id="projects" class="py-12 mb-12">
+            <h2 class="text-5xl font-extrabold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-red-700">
+                My Projects
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Project Card 1: PYQ Android App -->
+                <div class="bg-white rounded-xl shadow-2xl overflow-hidden transform transition duration-500 hover:scale-105 hover:shadow-blue-500/50 group">
+                    <img src="https://placehold.co/600x350/312e81/ffffff?text=PYQ+Android+App" alt="PYQ Android App Project" class="w-full h-56 object-cover rounded-t-xl group-hover:brightness-90 transition duration-300">
+                    <div class="p-6">
+                        <h3 class="text-3xl font-bold text-blue-600 mb-3 group-hover:text-blue-700 transition duration-300">PYQ Android App</h3>
+                        <p class="text-gray-700 text-lg mb-4 leading-relaxed">
+                            An intuitive Android application designed to provide easy access to previous year exam papers, helping students prepare efficiently.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-sm mb-4">
+                            <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full"><i class="fab fa-java mr-1"></i>Java</span>
+                            <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full"><i class="fas fa-database mr-1"></i>SQLite</span>
+                            <span class="bg-blue-200 text-blue-800 px-3 py-1 rounded-full"><i class="fab fa-android mr-1"></i>Android Studio</span>
+                        </div>
+                    
+                    </div>
+                </div>
+
+                <!-- Project Card 2: Plate2Donate -->
+                <div class="bg-white rounded-xl shadow-2xl overflow-hidden transform transition duration-500 hover:scale-105 hover:shadow-green-500/50 group">
+                    <img src="https://placehold.co/600x350/059669/ffffff?text=Plate2Donate+App" alt="Plate2Donate Project" class="w-full h-56 object-cover rounded-t-xl group-hover:brightness-90 transition duration-300">
+                    <div class="p-6">
+                        <h3 class="text-3xl font-bold text-green-600 mb-3 group-hover:text-green-700 transition duration-300">Plate2Donate</h3>
+                        <p class="text-gray-700 text-lg mb-4 leading-relaxed">
+                            The Plate2Donate project aims to be a centralized platform to organize and manage food donation events.
+                        </p>
+                        <div class="flex flex-wrap gap-2 text-sm mb-4">
+                            <span class="bg-green-200 text-green-800 px-3 py-1 rounded-full"><i class="fab fa-react mr-1"></i>React</span>
+                            <span class="bg-green-200 text-green-800 px-3 py-1 rounded-full"><i class="fab fa-node-js mr-1"></i>Node.js</span>
+                            <span class="bg-green-200 text-green-800 px-3 py-1 rounded-full">Express.js</span>
+                            <span class="bg-green-200 text-green-800 px-3 py-1 rounded-full"><i class="fas fa-database mr-1"></i>MongoDB</span>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-12 mb-12">
+            <h2 class="text-5xl font-extrabold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-red-600 to-orange-700">
+                My Skills
+            </h2>
+            <div class="max-w-4xl mx-auto bg-white rounded-xl shadow-2xl p-8 md:p-12">
+                <div class="mb-8">
+                    <h3 class="text-3xl font-semibold text-orange-700 mb-4 flex items-center"><i class="fas fa-code mr-3"></i>Programming Languages</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-orange-200 text-orange-800 px-4 py-2 rounded-full text-lg flex items-center"><i class="fas fa-c mr-2"></i></span>
+                        <span class="bg-orange-200 text-orange-800 px-4 py-2 rounded-full text-lg flex items-center"><i class="fas fa-database mr-2"></i>SQL</span>
+                        <span class="bg-orange-200 text-orange-800 px-4 py-2 rounded-full text-lg flex items-center"><i class="fab fa-java mr-2"></i>Java</span>
+                    </div>
+                </div>
+
+                <div class="mb-8">
+                    <h3 class="text-3xl font-semibold text-teal-700 mb-4 flex items-center"><i class="fas fa-globe mr-3"></i>Web Technologies</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-teal-200 text-teal-800 px-4 py-2 rounded-full text-lg flex items-center"><i class="fab fa-html5 mr-2"></i>HTML</span>
+                        <span class="bg-teal-200 text-teal-800 px-4 py-2 rounded-full text-lg flex items-center"><i class="fab fa-css3-alt mr-2"></i>CSS</span>
+                        <span class="bg-teal-200 text-teal-800 px-4 py-2 rounded-full text-lg flex items-center"><i class="fab fa-js-square mr-2"></i>JavaScript</span>
+                        <span class="bg-teal-200 text-teal-800 px-4 py-2 rounded-full text-lg flex items-center"><i class="fab fa-react mr-2"></i>React</span>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-3xl font-semibold text-blue-700 mb-4 flex items-center"><i class="fas fa-tools mr-3"></i>Tools</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="bg-blue-200 text-blue-800 px-4 py-2 rounded-full text-lg flex items-center"><i class="fab fa-figma mr-2"></i>Figma</span>
+                        <span class="bg-blue-200 text-blue-800 px-4 py-2 rounded-full text-lg flex items-center"><i class="fas fa-laptop-code mr-2"></i>VS Code</span>
+                        <span class="bg-blue-200 text-blue-800 px-4 py-2 rounded-full text-lg flex items-center"><i class="fab fa-android mr-2"></i>Android Studio</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Combined Certificates and Resume Section -->
+        <section id="certificates" class="py-12 mb-12">
+            <h2 class="text-5xl font-extrabold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-purple-700">
+                My Documents
+            </h2>
+            <div class="flex flex-col md:flex-row gap-8 max-w-5xl mx-auto justify-center">
+                <!-- Certificates Sub-section -->
+                <div class="w-full md:w-1/2 bg-white rounded-xl shadow-2xl p-8 md:p-12 text-center">
+                    <h3 class="text-4xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-600">
+                        Certificates
+                    </h3>
+                    <button id="viewCertificatesBtn" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 text-xl">
+                        View All Certificates
+                    </button>
+                </div>
+
+                <!-- Resume Sub-section -->
+                <div class="w-full md:w-1/2 bg-white rounded-xl shadow-2xl p-8 md:p-12 text-center">
+                    <h3 class="text-4xl font-extrabold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-600">
+                        Resume
+                    </h3>
+                    <!-- Changed to an <a> tag for direct PDF viewing, styled like a button -->
+                    <a href="certificate/Shipra Resume final1.pdf" target="_blank" rel="noopener noreferrer" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 text-xl">
+                        View My Resume
                     </a>
                 </div>
             </div>
-            <p class="footer__copy">&#169; Ratheshan03. All rights reserved.</p>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-12 mb-12">
+            <h2 class="text-5xl font-extrabold text-center mb-16 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-teal-700">
+                Get in Touch
+            </h2>
+            <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-2xl p-8 md:p-12">
+                <div class="flex flex-col md:flex-row justify-around items-center mb-10 space-y-6 md:space-y-0">
+                    <a href="mailto:shipra.2426mca528@kiet.edu" class="flex items-center text-gray-700 hover:text-blue-600 transition duration-300 text-lg md:text-xl">
+                        <i class="fas fa-envelope mr-3 text-blue-600"></i> shipra.2426mca528@kiet.edu
+                    </a>
+                    <a href="https://linkedin.com/in/shipra-upadhyay-6136a632b" target="_blank" rel="noopener noreferrer" class="flex items-center text-gray-700 hover:text-blue-600 transition duration-300 text-lg md:text-xl">
+                        <i class="fab fa-linkedin mr-3 text-blue-600"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/Shipra53" target="_blank" rel="noopener noreferrer" class="flex items-center text-gray-700 hover:text-blue-600 transition duration-300 text-lg md:text-xl">
+                        <i class="fab fa-github mr-3 text-blue-600"></i> GitHub
+                    </a>
+                </div>
+
+                <form class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-gray-700 text-xl font-medium mb-2">Name</label>
+                        <input type="text" id="name" name="name" class="w-full p-4 rounded-lg bg-gray-100 border border-gray-300 focus:border-blue-500 focus:ring-blue-500 outline-none text-gray-800 placeholder-gray-500 text-lg transition duration-300" placeholder="Your Name" required>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-gray-700 text-xl font-medium mb-2">Email</label>
+                        <input type="email" id="email" name="email" class="w-full p-4 rounded-lg bg-gray-100 border border-gray-300 focus:border-blue-500 focus:ring-blue-500 outline-none text-gray-800 placeholder-gray-500 text-lg transition duration-300" placeholder="your.email@example.com" required>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-gray-700 text-xl font-medium mb-2">Message</label>
+                        <textarea id="message" name="message" rows="6" class="w-full p-4 rounded-lg bg-gray-100 border border-gray-300 focus:border-blue-500 focus:ring-blue-500 outline-none text-gray-800 placeholder-gray-500 text-lg transition duration-300" placeholder="Your message..." required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:scale-105 text-xl">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-blue-600 bg-opacity-70 backdrop-blur-sm text-white py-6 mt-auto shadow-inner">
+        <div class="container mx-auto text-center text-lg">
+            <p>&copy; 2025 Shipra Upadhyay. All rights reserved.</p>
+            <div class="flex justify-center space-x-6 mt-4">
+                <a href="https://linkedin.com/in/shipra-upadhyay-6136a632b" target="_blank" rel="noopener noreferrer" class="hover:text-blue-200 transition duration-300"><i class="fab fa-linkedin text-xl"></i></a>
+                <a href="https://github.com/Shipra53" target="_blank" rel="noopener noreferrer" class="hover:text-blue-200 transition duration-300"><i class="fab fa-github text-xl"></i></a>
+                <!-- You can add Behance or other social links here -->
+            </div>
         </div>
     </footer>
 
-    <!--==================== SCROLL TOP ====================-->
-    <a href="#" class="scrollup" id="scroll-up">
-        <i class="uil uil-arrow-up scrollup__icon"></i>
-    </a>
+    <!-- Certificates Modal -->
+    <div id="certificatesModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeCertificatesModal">&times;</span>
+            <h2 class="text-4xl font-extrabold text-center mb-8 bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-purple-700">
+                My Certificates
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Certificate Card 1: AWS Academy -->
+                <div class="bg-gray-700 rounded-lg p-6 shadow-md certificate-card">
+                    <h3 class="text-xl font-semibold text-teal-300 mb-2">AWS Academy Graduate - AWS Academy Cloud Foundations</h3>
+                    <p class="text-gray-300 text-base mb-2">Issued by: AWS Academy</p>
+                    <p class="text-gray-400 text-sm mb-4">Issued on: 04/12/2025</p>
+                    <a href="certificate/AWS_Academy_Graduate___AWS_Academy_Cloud_Foundations_Badge20250412-25-r5w187.pdf" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 font-semibold flex items-center transition duration-300">
+                        View Certificate <i class="fas fa-file-pdf ml-2"></i>
+                    </a>
+                </div>
 
+                <!-- Certificate Card 2: Android App Development -->
+                <div class="bg-gray-700 rounded-lg p-6 shadow-md certificate-card">
+                    <h3 class="text-xl font-semibold text-teal-300 mb-2">Android App Development</h3>
+                    <p class="text-gray-300 text-base mb-2">Issued by: C.M.P. Degree College, University of Allahabad</p>
+                    <p class="text-gray-400 text-sm mb-4">Issued during: 2022-2023</p>
+                    <a href="certificate/certificate android.jpg" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 font-semibold flex items-center transition duration-300">
+                        View Certificate <i class="fas fa-image ml-2"></i>
+                    </a>
+                </div>
 
-    <!--==================== SWIPER JS ====================-->
-    <script src="./packages/js/swiper-bundle.min.js"></script>
+                <!-- Certificate Card 3: Introduction to Cybersecurity -->
+                <div class="bg-gray-700 rounded-lg p-6 shadow-md certificate-card">
+                    <h3 class="text-xl font-semibold text-teal-300 mb-2">Introduction to Cybersecurity</h3>
+                    <p class="text-gray-300 text-base mb-2">Issued by: Cisco Networking Academy</p>
+                    <p class="text-gray-400 text-sm mb-4">Completion Date: 01 May 2025</p>
+                    <a href="certificate/Cyber security cisco.pdf" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 font-semibold flex items-center transition duration-300">
+                        View Certificate <i class="fas fa-file-pdf ml-2"></i>
+                    </a>
+                </div>
 
-    <!--==================== MAIN JS ====================-->
-    <script src="./packages/js/main.js"></script>
+                <!-- Certificate Card 4: HTML - Beginners -->
+                <div class="bg-gray-700 rounded-lg p-6 shadow-md certificate-card">
+                    <h3 class="text-xl font-semibold text-teal-300 mb-2">HTML - Beginners</h3>
+                    <p class="text-gray-300 text-base mb-2">Issued by: Infosys | Springboard</p>
+                    <p class="text-gray-400 text-sm mb-4">Issued on: June 8, 2025</p>
+
+                    <a href="certificate/HTML - Beginners infosys.pdf" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 font-semibold flex items-center transition duration-300">
+                        View Certificate <i class="fas fa-file-pdf ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Certificate Card 5: Query Quest in HACK-A-THON 2K25 -->
+                <div class="bg-gray-700 rounded-lg p-6 shadow-md certificate-card">
+                    <h3 class="text-xl font-semibold text-teal-300 mb-2">Certificate of Merit (Query Quest)</h3>
+                    <p class="text-gray-300 text-base mb-2">Issued by: IMS Ghaziabad & KIET</p>
+                    <p class="text-gray-400 text-sm mb-4">Held on: April 7, 2025</p>
+                    <a href="/certificate/Ims query quest.pdf" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 font-semibold flex items-center transition duration-300">
+                        View Certificate <i class="fas fa-file-pdf ml-2"></i>
+                    </a>
+                </div>
+
+                <!-- Certificate Card 6: Java Features -->
+                <div class="bg-gray-700 rounded-lg p-6 shadow-md certificate-card">
+                    <h3 class="text-xl font-semibold text-teal-300 mb-2">Java Features</h3>
+                    <p class="text-gray-300 text-base mb-2">Issued by: Infosys | Springboard</p>
+                    <p class="text-gray-400 text-sm mb-4">Issued on: June 8, 2025</p>
+                    <a href="certificate/java features infosys.pdf" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 font-semibold flex items-center transition duration-300">
+                        View Certificate <i class="fas fa-file-pdf ml-2"></i>
+                    </a>
+                </div>
+                  <div class="bg-gray-700 rounded-lg p-6 shadow-md certificate-card">
+                    <h3 class="text-xl font-semibold text-teal-300 mb-2">Introduction to Artificial Intelligence</h3>
+                    <p class="text-gray-300 text-base mb-2">Issued by: LinkedIn Learning</p>
+                    <p class="text-gray-400 text-sm mb-4">Issued on: March 3, 2025</p>
+                    <a href="certificate/LinkedIn Learning Certificate.pdf" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 font-semibold flex items-center transition duration-300">
+                        View Certificate <i class="fas fa-file-pdf ml-2"></i>
+                    </a>
+                </div>
+                  <div class="bg-gray-700 rounded-lg p-6 shadow-md certificate-card">
+                    <h3 class="text-xl font-semibold text-teal-300 mb-2">Programming using Java</h3>
+                    <p class="text-gray-300 text-base mb-2">Issued by: Infosys | Springboard</p>
+                    <p class="text-gray-400 text-sm mb-4">Issued on: June 10, 2025</p>
+                    <a href="certificate/Programming using Java infosys.pdf" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 font-semibold flex items-center transition duration-300">
+                        View Certificate <i class="fas fa-file-pdf ml-2"></i>
+                    </a>
+                </div>
+                  <div class="bg-gray-700 rounded-lg p-6 shadow-md certificate-card">
+                    <h3 class="text-xl font-semibold text-teal-300 mb-2">Python 1 Essential</h3>
+                    <p class="text-gray-300 text-base mb-2">Issued by: Cisco</p>
+                    <p class="text-gray-400 text-sm mb-4">Issued on: May 1, 2025</p>
+                    <a href="certificate/Python1 Shipra.pdf" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 font-semibold flex items-center transition duration-300">
+                        View Certificate <i class="fas fa-file-pdf ml-2"></i>
+                    </a>
+                </div>
+                <div class="bg-gray-700 rounded-lg p-6 shadow-md certificate-card">
+                    <h3 class="text-xl font-semibold text-teal-300 mb-2">Python 2 Essential</h3>
+                    <p class="text-gray-300 text-base mb-2">Issued by: Cisco</p>
+                    <p class="text-gray-400 text-sm mb-4">Issued on: April 30, 2025</p>
+                    <a href="certificate/Python2 Shipra.pdf" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 font-semibold flex items-center transition duration-300">
+                        View Certificate <i class="fas fa-file-pdf ml-2"></i>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for Mobile Menu
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const closeMobileMenu = document.getElementById('close-mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('hidden');
+            mobileMenu.classList.add('flex');
+        });
+
+        closeMobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('flex');
+        });
+
+        // Close mobile menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+        });
+
+        // JavaScript for Certificates Modal
+        const viewCertificatesBtn = document.getElementById('viewCertificatesBtn');
+        const certificatesModal = document.getElementById('certificatesModal');
+        const closeCertificatesModal = document.getElementById('closeCertificatesModal');
+
+        viewCertificatesBtn.addEventListener('click', () => {
+            certificatesModal.style.display = 'flex'; // Use flex to center content
+        });
+
+        closeCertificatesModal.addEventListener('click', () => {
+            certificatesModal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside of the modal content
+        window.addEventListener('click', (event) => {
+            if (event.target == certificatesModal) {
+                certificatesModal.style.display = 'none';
+            }
+        });
+    </script>
 </body>
+</html>
