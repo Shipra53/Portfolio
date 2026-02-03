@@ -1,0 +1,46 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f4f4;
+  color: #333;
+}
+nav {
+  background: #222;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+}
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+nav a {
+  color: #fff;
+  text-decoration: none;
+}
+.hero, main section {
+  padding: 2rem;
+}
+.project-card {
+  display: inline-block;
+  margin: 1rem;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  background: #fff;
+  text-align: center;
+}
+.project-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #222;
+  color: #fff;
+}
